@@ -51,8 +51,8 @@ p. ...
 
 
 
-includeFraction = p.modelCode(1)==1;
-includeConcomittant = p.modelCode(2)==1;
+includeFraction = p.modelCode(1)==2;
+includeConcomittant = p.modelCode(2)==2;
 
 res = p.res;
 con = p.con;

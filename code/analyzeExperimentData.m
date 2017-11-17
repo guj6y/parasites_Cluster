@@ -41,35 +41,22 @@ var4 = 'stdBiomasses';
 %}
 
 %setup parameters.
-T = load('../setup_parameters.mat');
+T = load('../simParams.mat');
 webStructures = T.(var1);
 
-%The 4d arrays:
-T = load('../out_4d.mat');
+%The results
+T = load('../out.mat');
 meanBiomass = T.(var2);
 finalBiomass= T.(var3);
 stdBiomass = T.(var4);
 
 clear T
 
+%So much for poofing! This has the basic sort of sim data that I gotta have.
+load '../metaSimData.mat'
+
 extctBinArray = finalBiomass>0;
 
-models = fullfact([2,2,2,2]);
-
-%The fuck did I do this for?  Need it to be consistent with how the
-%experiment was run and saved.  
-
-%ZFree,ZPara,FracFree,Concomittant
-models = [models(:,4),models(:,1:3)];
-
-nModels = length(models);
-
-%Getting these parameters.  Could have hard coded them, but Ithought this
-%was more nice.
-[S, nFPar, nModel, nWeb] = size(finalBiomass);
-
-%The parasite fractionsb eing tested.
-fParAll = [0 0.025 0.05 0.1 0.15 0.2 0.25 .30 .35 .4 .45 .5 .75 1];
 %Want to get an array that lets me extract parasites.  A little bit
 %challenging to work through the 4D array, but it works out.
 paraSp = false(S,nFPar,1,nWeb);
